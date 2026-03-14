@@ -1,8 +1,8 @@
-# 🚀 Ad Spend Optimization Engine
+# Ad Spend Optimization Engine
 
 A real-time advertising analytics platform that ingests **100K+ events/hour** via Kafka + Spark Streaming into BigQuery, with dbt transformations and a React/TypeScript dashboard tracking ROAS, CPM, CPC, and funnel drop-off.
 
-## 📊 Architecture
+## Architecture
 
 ```
 Ad Platforms (Meta, Google, TikTok)
@@ -109,18 +109,10 @@ npm run dev
 # Open http://localhost:5173
 ```
 
-## 📈 Key Metrics Tracked
+##  Key Metrics Tracked
 
 - **ROAS** (Return on Ad Spend) by platform & campaign
 - **CPC / CPM / CTR** aggregated hourly/daily
 - **Funnel Drop-off** (impression → click → conversion)
 - **Budget Utilization** vs. target
 - **Streaming Latency** (end-to-end pipeline health)
-
-## 🔧 Environment Variables
-
-See `.env.example` for all required variables.
-
-## 📄 License
-
-MIT
