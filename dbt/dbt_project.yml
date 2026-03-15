@@ -1,0 +1,33 @@
+name: ad_spend_optimizer
+version: "1.0.0"
+config-version: 2
+
+profile: ad_spend_optimizer
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  ad_spend_optimizer:
+    staging:
+      +materialized: view
+      +schema: staging
+    marts:
+      +materialized: table
+      +schema: marts
+      core:
+        +materialized: table
+      reporting:
+        +materialized: view
+
+vars:
+  lookback_days: 30
+  roas_target: 3.0
+  ctr_benchmark: 0.02

@@ -1,0 +1,59 @@
+version: 2
+
+sources:
+  - name: ad_spend_raw
+    database: "{{ env_var('GCP_PROJECT_ID') }}"
+    schema: ad_spend_raw
+    description: "Raw ad event data ingested via Spark Streaming from Kafka"
+    tables:
+      - name: raw_ad_events
+        description: "All ad events (impressions, clicks, conversions)"
+        columns:
+          - name: event_id
+            description: "Unique event identifier (UUID)"
+            tests: [not_null, unique]
+          - name: event_type
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['impression', 'click', 'conversion']
+          - name: platform
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['meta', 'google', 'tiktok', 'snapchat', 'pinterest']
+          - name: spend_usd
+            tests:
+              - not_null
+              - dbt_utils.expression_is_true:
+                  expression: ">= 0"
+
+      - name: hourly_campaign_metrics
+        description: "Pre-aggregated hourly metrics from Spark"
+        columns:
+          - name: campaign_id
+            tests: [not_null]
+          - name: roas
+            tests: [not_null]
+
+models:
+  - name: stg_ad_events
+    description: "Cleaned and deduplicated ad events"
+    columns:
+      - name: event_id
+        tests: [not_null, unique]
+      - name: event_type
+        tests:
+          - accepted_values:
+              values: ['impression', 'click', 'conversion']
+
+  - name: campaign_performance_daily
+    description: "Daily campaign performance with ROAS, CTR, CVR"
+    columns:
+      - name: roas
+        description: "Return on Ad Spend = revenue / spend"
+      - name: ctr
+        description: "Click Through Rate = clicks / impressions"
+
+  - name: funnel_analysis
+    description: "Funnel drop-off by campaign and platform"
