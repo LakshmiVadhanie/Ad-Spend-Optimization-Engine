@@ -1,0 +1,89 @@
+# ─── Python ──────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+*.egg
+pip-log.txt
+pip-delete-this-directory.txt
+.mypy_cache/
+.pytype/
+
+# ─── Node / React ────────────────────────────────────────────
+node_modules/
+dashboard/node_modules/
+dashboard/dist/
+dashboard/.env
+*.local
+.eslintcache
+.parcel-cache/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ─── Environment & Secrets ───────────────────────────────────
+.env
+.env.*
+!.env.example
+secrets/
+*.json.key
+gcp-*.json
+service-account*.json
+credentials/
+
+# ─── Spark / Hadoop ──────────────────────────────────────────
+/tmp/
+spark-warehouse/
+derby.log
+metastore_db/
+*.checkpoint/
+
+# ─── dbt ─────────────────────────────────────────────────────
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+
+# ─── Kafka ───────────────────────────────────────────────────
+kafka/logs/
+
+# ─── Power BI ────────────────────────────────────────────────
+powerbi/*.pbit
+powerbi/*.pbix
+
+# ─── IDE ─────────────────────────────────────────────────────
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# ─── OS Files ────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ─── Docker ──────────────────────────────────────────────────
+.docker/
+docker-compose.override.yml
+
+# ─── Misc ────────────────────────────────────────────────────
+*.log
+*.tmp
+coverage/
+htmlcov/
+.cache/
+*.bak
+*.orig
